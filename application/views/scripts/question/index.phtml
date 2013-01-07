@@ -1,0 +1,21 @@
+<?php if (count($this->paginator)): ?>
+    <table>
+        <tr>
+            <th>id</th>
+            <th>Автор</th>
+            <th>Вопрос</th>
+            <th>Кол-во ответов</th>
+        </tr>
+        <?php foreach ($this->paginator as $page): ?>
+            <tr>
+                <td><?php echo $page['id']; ?></td>
+                <td><?php echo $page['username']; ?></td>
+                <td><?php echo $page['title']; ?></td>
+                <td><?php echo $page['answers_count']; ?></td>
+            </tr>
+        <?php endforeach; ?>
+    </table>
+    <?php echo $this->paginationControl($this->paginator, 'Sliding', 'partials/paginator.phtml'); ?>
+<?php else: ?>
+    <p>Вопросов нет =(</p>
+<?php endif; ?>

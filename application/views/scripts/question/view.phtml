@@ -1,0 +1,21 @@
+<?php
+//описание вопроса
+//автор вопроса
+//список ответов
+//форма добавления комментария
+?>
+<h2><?php echo $this->question->title; ?> - <?php echo $this->author->username; ?></h2>
+<p><?php echo $this->question->description; ?></p>
+<?php if (count($this->answers) > 0): ?>
+    <?php foreach ($this->answers as $answer): ?>
+        <p><?php echo $answer->answer; ?></p>
+    <?php endforeach; ?>
+<?php else: ?>
+    <p>Ответов пока нет!</p>
+<?php endif; ?>
+<?php if ($this->identity): ?>
+    <p>какдела <?php echo $this->identity->username; ?></p>
+    <?php echo $this->form; ?>
+<?php else: ?>
+    <p>Для того, чтобы ответить - авторизуйтесь!</p>
+<?php endif; ?>

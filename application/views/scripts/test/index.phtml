@@ -1,0 +1,61 @@
+<h2>Autocomplete control!!</h2>
+<?php echo $this->autocompleteElement;?>
+
+<h2>Datepicker Ui</h2>
+    <?php echo "pick ur date: ".$this->datePicker('date','',array());?>
+
+<h2>Find items json + jquery</h2>
+<a href="#" id="get">GET THEM!</a>
+<br/>
+
+<input type="text" id="item" value=""/>
+<a href="#" id="find">FIND EM!</a>
+
+<dl id="items">
+
+</dl>
+<script type="text/javascript">
+    $(function(){
+        $("#get").click(function(){
+            getItemsJson();
+            return false;
+        });
+        $("#find").click(function(){
+            if($("#item").val().length == 0)
+                getItemsJson();
+            else
+                getItemJson($("#item").val());
+            
+            return false;
+        });
+    });
+    
+    function getItemsJson(){
+        $.post(
+        "/test/get",
+        {},
+        function(data){
+            for(var i = 0; i<data.length;i++)
+            {
+                $("#items").append("<dt>"+data[i].id+": "+data[i].name+"</dt>");
+                $("#items").append("<dd>"+data[i].desc+"</dd>");
+            }
+        },
+        'json'
+    );
+    }
+    
+    function getItemJson(id){
+        $.post(
+        "/test/getitem",
+        {
+            "id":id
+        },
+        function(data){
+            $("#items").append("<dt>"+data.id+": "+data.name+"</dt>");
+            $("#items").append("<dd>"+data.desc+"</dd>");
+        },
+        'json'
+    );
+    }
+</script>

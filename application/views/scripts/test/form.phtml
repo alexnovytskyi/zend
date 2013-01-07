@@ -1,0 +1,34 @@
+<?php echo $this->form; ?>
+<script type="text/javascript">
+    
+    $(function(){
+        $("input").blur(function(){
+            var id = $(this).attr('id');
+            doValidation(id);
+        })
+       
+    })
+    
+    function doValidation(id){
+        var url = "/test/validateform";
+        var data = {};
+        $("input").each(function(){
+            data[$(this).attr('name')] = $(this).val();
+        });
+        $.post(url,data,function(resp)
+        {
+            $("#"+id).parent().find('.errors').remove();
+            if(resp[id])
+                $("#"+id).parent().append(htmlErrors(resp[id], id));
+        },'json');
+    }
+    
+    function htmlErrors(errors,id){
+        var o = '<ul id="errors-'+id+'" class="errors">';
+        for(error in errors){
+            o+='<li>'+errors[error]+'</li>';
+        }
+        o+= '</ul>';
+        return o;
+    }
+</script>

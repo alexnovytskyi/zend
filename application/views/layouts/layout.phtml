@@ -1,0 +1,32 @@
+<?php $this->doctype('XHTML1_STRICT'); ?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <?php echo $this->headMeta(); ?>
+        <?php echo $this->headTitle(); ?>
+        <?php echo $this->headLink()->appendStylesheet($this->baseUrl() . '/css/blueprint/screen.css', 'screen'); ?>
+        <?php echo $this->headLink()->appendStylesheet($this->baseUrl() . '/css/blueprint/print.css', 'print'); ?>        
+        <?php echo $this->headLink()->appendStylesheet($this->baseUrl() . '/css/blueprint/ie.css', 'screen', 'IE'); ?>
+        <?php echo $this->headLink()->appendStylesheet($this->baseUrl() . '/css/blueprint/master.css', 'screen', 'IE'); ?>
+        <?php echo $this->headLink()->appendStylesheet($this->baseUrl() . '/css/main.css'); ?>
+        <?php echo $this->jQuery(); ?>
+    </head>
+
+    <body>
+        <div class="container">
+            <div id="header "  class="span-24 last">
+                <h2><?php echo $this->title ?></h2>
+            </div>
+            <div id="content" class="span-17 colborder">
+                <?php echo $this->layout()->content; ?>
+            </div>
+            <div id="sidebar" class="span-6 last">
+                <h2>Sidebar</h2>
+            </div>
+            <div id="footer" class="span-24 last">
+                <h2>Footer</h2>
+            </div>
+        </div>
+    </body>
+
+
+</html>

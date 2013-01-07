@@ -1,0 +1,6 @@
+<?php if ($this->identity): ?>
+    <p>Добро пожаловать, <?php echo $this->identity->username;?></p>
+<?php else: ?>
+    <?php echo $this->form; ?>
+    <?php echo $this->message;?>
+<?php endif; ?>
